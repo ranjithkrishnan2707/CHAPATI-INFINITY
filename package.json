@@ -1,0 +1,12 @@
+{
+  "name": "chapati-infinity",
+  "version": "1.0.0",
+  "description": "Chapati Infinity official website and ordering platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Chapati Infinity",
+  "license": "ISC"
+}
