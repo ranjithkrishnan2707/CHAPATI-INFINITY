@@ -59,12 +59,12 @@ async function initFirebase() {
       await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
 
     // Don't initialise with placeholder values
-    if (FIREBASE_CONFIG.apiKey === "YOUR_API_KEY") {
+    if (firebaseConfig.apiKey === "YOUR_API_KEY") {
       console.warn("[Chapati Infinity] Firebase not configured. Orders will only be sent via WhatsApp.");
       return;
     }
 
-    const app = initializeApp(FIREBASE_CONFIG);
+    const app = initializeApp(firebaseConfig);
     db = getFirestore(app);
     firebaseReady = true;
 
