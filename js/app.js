@@ -676,29 +676,36 @@ function initMobileNav() {
 
 // INTERACTIVE 3D TEXT TILT & ROTATION
 function init3DTextInteraction() {
-  const container = document.getElementById('stage-3d-interactive');
-  const box = document.getElementById('scene-3d-box');
-  if (!container || !box) return;
+  function setup3D(containerId, boxId, defaultAnimation) {
+    const container = document.getElementById(containerId);
+    const box = document.getElementById(boxId);
+    if (!container || !box) return;
 
-  container.addEventListener('mousemove', (e) => {
-    const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    container.addEventListener('mousemove', (e) => {
+      const rect = container.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
 
-    const rotateX = ((y - centerY) / centerY) * -16;
-    const rotateY = ((x - centerX) / centerX) * 20;
+      const rotateX = ((y - centerY) / centerY) * -15;
+      const rotateY = ((x - centerX) / centerX) * 18;
 
-    box.style.animation = 'none';
-    box.style.transform = `rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale(1.02)`;
-  });
+      box.style.animation = 'none';
+      box.style.transform = `rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale(1.03)`;
+    });
 
-  container.addEventListener('mouseleave', () => {
-    box.style.transform = '';
-    box.style.animation = 'float3DScene 5s ease-in-out infinite alternate';
-  });
+    container.addEventListener('mouseleave', () => {
+      box.style.transform = '';
+      box.style.animation = defaultAnimation;
+    });
+  }
+
+  // Bind 3D interactive Tamil tagline stage under main/hero section
+  setup3D('stage-tamil-3d', 'box-tamil-3d', 'float3DBox 6s ease-in-out infinite alternate');
+  // Bind 3D typography stage in nutrition section
+  setup3D('stage-3d-interactive', 'scene-3d-box', 'float3DScene 5s ease-in-out infinite alternate');
 }
 
 // HERO SHOWCASE SLIDER & ANNOUNCEMENT CAROUSEL (INFINITE LOOP MODE)
